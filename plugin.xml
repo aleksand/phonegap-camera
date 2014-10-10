@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0" id="com.iq-logic.contexta.cameracheck" version="0.0.1">
+    <name>Cameracheck</name>
+    <description>Camera Check Plugin</description>
+    <license>Apache 2.0</license>
+    <keywords>camera,check</keywords>
+    <js-module src="www/cameracheck.js" name="cameracheck">
+        <clobbers target="window.cameracheck" />
+    </js-module>
+    <platform name="ios">
+        <config-file target="config.xml" parent="/*">
+            <feature name="Cameracheck">
+                <param name="ios-package" value="CDVCameracheck"/>
+            </feature>
+        </config-file>
+        <header-file src="src/ios/CDVCameracheck.h" />
+        <source-file src="src/ios/CDVCameracheck.m" />
+    </platform>
+</plugin>
