@@ -1,6 +1,6 @@
 #import <Cordova/CDV.h>
 
-@interface Cameracheck : CDVPlugin  {
+@interface CDVCameracheck : CDVPlugin  {
   // Member variables go here.
 }
 
