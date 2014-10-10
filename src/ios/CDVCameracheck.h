@@ -6,6 +6,7 @@
 
 @property(strong) NSString* callbackID;
 
-- (void)check:(CDVInvokedUrlCommand*)command;
+- (void)checkCamera:(CDVInvokedUrlCommand*)command;
+- (void)checkPhotos:(CDVInvokedUrlCommand*)command;
 
 @end

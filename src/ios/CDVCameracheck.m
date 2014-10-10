@@ -1,20 +1,45 @@
 
 #import "CDVCameracheck.h"
+#import <AssetsLibrary/AssetsLibrary.h>
+#import <AVFoundation/AVFoundation.h>
 
 @implementation CDVCameracheck
 
-- (void)check:(CDVInvokedUrlCommand*)command
+- (void)checkPhotos:(CDVInvokedUrlCommand*)command
 {
     CDVPluginResult* pluginResult = nil;
-    NSString* myarg = [command.arguments objectAtIndex:0];
     
     self.callbackID = command.callbackId;
     
-    if (myarg != nil) {
+    ALAuthorizationStatus authStatus = [ALAssetsLibrary authorizationStatus];
+    
+    if (authStatus == ALAuthorizationStatusAuthorized) {
         pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
     } else {
-        pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:@"Arg was null"];
+        pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:@"No access to photos"];
     }
+        
+    NSLog(@"check photos access: %ld", authStatus);
+    
+    [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+}
+
+- (void)checkCamera:(CDVInvokedUrlCommand*)command
+{
+    CDVPluginResult* pluginResult = nil;
+    
+    self.callbackID = command.callbackId;
+    NSString *mediaType = AVMediaTypeVideo; // Or AVMediaTypeAudio
+    
+    AVAuthorizationStatus authStatus = [AVCaptureDevice authorizationStatusForMediaType:mediaType];
+    
+    if (authStatus == AVAuthorizationStatusDenied) {
+        pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR];
+    } else {
+        pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:@"No camera access"];
+    }
+
+    NSLog(@"check camera result %ld", authStatus);
 
     [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
 }

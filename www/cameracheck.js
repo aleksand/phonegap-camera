@@ -1,17 +1,23 @@
-var CameraCheckAccess =  {}
+var CameraCheck =  {}
 
-CameraCheckAccess.check = function(callback) {
+CameraCheck.checkCamera = function(success, error) {
   cordova.exec(
-    function(w) {
-      console.log(w);
-    },
-    function(e) {
-      console.log(e);
-    },
+    success,
+    error,
     "Cameracheck",
-    "check",
-    ['sodochka']
+    "checkCamera",
+    []
   );
 }
 
-module.exports = CameraCheckAccess;
+CameraCheck.checkPhotos = function(success, error) {
+  cordova.exec(
+    success,
+    error,
+    "Cameracheck",
+    "checkPhotos",
+    []
+  );
+}
+
+module.exports = CameraCheck;
