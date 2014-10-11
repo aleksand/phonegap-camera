@@ -5,7 +5,7 @@
     <license>Apache 2.0</license>
     <keywords>camera,check</keywords>
     <js-module src="www/cameracheck.js" name="cameracheck">
-        <clobbers target="window.CameraCheck" />
+        <clobbers target="navigator.CameraCheck" />
     </js-module>
     <platform name="ios">
         <config-file target="config.xml" parent="/*">
