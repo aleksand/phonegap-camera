@@ -8,5 +8,6 @@
 
 - (void)checkCamera:(CDVInvokedUrlCommand*)command;
 - (void)checkPhotos:(CDVInvokedUrlCommand*)command;
+- (void)goToSettings:(CDVInvokedUrlCommand*)command;
 
 @end

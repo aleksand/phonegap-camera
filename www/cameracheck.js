@@ -20,4 +20,14 @@ CameraCheck.checkPhotos = function(success, error) {
   );
 }
 
+CameraCheck.goToSettings = function(success, error) {
+  cordova.exec(
+    success,
+    error,
+    "Cameracheck",
+    "goToSettings",
+    []
+  );
+}
+
 module.exports = CameraCheck;
